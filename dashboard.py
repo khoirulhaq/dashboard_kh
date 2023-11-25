@@ -24,7 +24,7 @@ def visualize_purchase_frequency(df):
     st.bar_chart(purchase_hour_counts)
 
 # Baca DataFrame dari file CSV
-file_path = "data/orders_dataset.csv"  # Ganti dengan path ke file CSV Anda
+file_path = "orders_dataset.csv"  # Ganti dengan path ke file CSV Anda
 df = pd.read_csv(file_path)
 
 # Tampilkan judul aplikasi
