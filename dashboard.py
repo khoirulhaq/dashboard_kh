@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Fungsi untuk membuat visualisasi dan menemukan jam dengan frekuensi tertinggi
 def visualize_purchase_frequency(df):
@@ -18,17 +18,16 @@ def visualize_purchase_frequency(df):
     frekuensi_tertinggi = purchase_hour_counts.max()
 
     # Tampilkan jam dengan frekuensi tertinggi
-    st.write(f"Jam dengan frekuensi tertinggi: {jam_tertinggi}.00 , Frekuensi: {frekuensi_tertinggi}")
+    st.write(f"Jam dengan frekuensi tertinggi: {jam_tertinggi}, Frekuensi: {frekuensi_tertinggi}")
 
-    # Plot histogram
-    fig, ax = plt.subplots()
-    ax.bar(purchase_hour_counts.index, purchase_hour_counts.values, color='skyblue')
-    ax.set_title('Purchase Frequency by Hour')
-    ax.set_xlabel('Hour of the Day')
-    ax.set_ylabel('Number of Purchases')
+    # Plot histogram menggunakan Plotly Express
+    fig = px.bar(x=purchase_hour_counts.index, y=purchase_hour_counts.values,
+                 labels={'x': 'Hour of the Day', 'y': 'Number of Purchases'},
+                 title='Purchase Frequency by Hour',
+                 color_discrete_sequence=['skyblue'])
 
     # Tampilkan plot di aplikasi Streamlit
-    st.pyplot(fig)
+    st.plotly_chart(fig)
 
 # Baca DataFrame dari file CSV
 file_path = "orders_dataset.csv"  # Ganti dengan path ke file CSV Anda
