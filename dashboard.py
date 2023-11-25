@@ -1,3 +1,11 @@
+import subprocess
+
+# Lokasi file requirements.txt
+path_to_requirements = "requirements.txt"
+
+# Jalankan perintah pip install
+subprocess.run(["pip", "install", "-r", path_to_requirements])
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
